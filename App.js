@@ -24,12 +24,20 @@ const App = () => {
 
   changeTextHandler = (text) => {
     setEntry(text);
+    console.log('changeHandler')
+  }
+
+  isDoneHandler = (index) => {
+    let newList = [...list];
+    newList[index].isDone = !(newList[0].isDone);
+    setList(newList);
   }
 
   addToList = () => {
     let newList = [...list];
-    newList.push({ myEntry: entry });
+    newList.push({ myEntry: entry ,isDone:false});
     setList(newList);
+    console.log('addToList')
   }
 
 
@@ -47,7 +55,7 @@ const App = () => {
             keyExtractor={(item, index) => index.toString()}
             data={list}
             renderItem={
-              ({ item }) => <ListItem data={item} />
+              ({ item, index }) => <ListItem data={item} itemIndex ={index} myClick ={isDoneHandler}/>
             }
           />
         </View>

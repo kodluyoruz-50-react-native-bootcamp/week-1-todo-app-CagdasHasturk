@@ -8,16 +8,14 @@ import {
 
 
 const ListItem = (props) => {
-    const [isDone, setIsDone] = useState(false);
-    const styles = isDone ? doneStyles : undoneStyles
+    const isDone = props.data.isDone
+    const styles = isDone? doneStyles : undoneStyles
 
-    isDoneHandler = () => {
-        setIsDone(!isDone)
-    }
+    
     return (
         <TouchableOpacity
             style={styles.buttonContainer}
-            onPress={isDoneHandler}
+            onPress={() => props.myClick(props.itemIndex)}
         >
             <View style={styles.container}>
                 <View style={styles.dot} ></View>
